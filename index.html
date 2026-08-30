@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve Morrow — Writing &amp; Video</title>
+<meta name="description" content="Writing, video, and audio work by Steve Morrow for Prima Coffee Equipment and Kentucky Housing Corporation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #FAFAFA;
+    --panel: #FFFFFF;
+    --ink: #111111;
+    --ink-soft: #666666;
+    --line: #DDDDDD;
+    --focus: #2B5FB0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(250, 250, 250, 0.92);
+    backdrop-filter: blur(6px);
+  }
+  header.site .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .brand{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  nav.site-nav{
+    display: flex;
+    gap: 24px;
+  }
+  nav.site-nav a{
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  nav.site-nav a:hover{ color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 64px 0 48px;
+  }
+  .hero h1{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .hero-banner{
+    width: 100%;
+    max-height: 420px;
+    overflow: hidden;
+    margin: 40px 0 8px;
+  }
+  .hero-banner img{
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---------- Employer headers (unused, kept for safety) ---------- */
+  .employer-kicker{ display: none; }
+  .employer-name{ display: none; }
+  .employer-desc{ display: none; }
+
+  /* ---------- Section headings ---------- */
+  section.block{
+    padding: 40px 0;
+  }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .section-head h2{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin: 0;
+  }
+  .section-head .count{
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Cards ---------- */
+  .entry-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+  @media (max-width: 620px){
+    .entry-list{ grid-template-columns: 1fr; }
+  }
+  .entry{
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ink);
+    overflow: hidden;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .entry:hover{
+    border-left-color: var(--ink);
+    transform: translateX(2px);
+  }
+  .entry-thumb{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .entry-thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .entry-body{
+    padding: 18px 20px;
+  }
+  .entry-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .entry-title{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.12rem;
+    line-height: 1.3;
+  }
+  .entry-tag{
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .entry-desc{
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    margin: 0 0 8px;
+    max-width: 62ch;
+  }
+  .entry-meta{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    opacity: 0.85;
+  }
+
+  /* ---------- Video grid ---------- */
+  .video-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 620px){
+    .video-grid{ grid-template-columns: 1fr; }
+  }
+  .video-card{
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: transform 0.15s ease;
+  }
+  .video-card:hover{ transform: translateY(-2px); }
+  .video-thumb{
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .video-thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.92;
+  }
+  .video-thumb::after{
+    content: "▶";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    font-size: 1.3rem;
+    background: rgba(17, 17, 17, 0.25);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .video-info{
+    padding: 12px 14px;
+  }
+  .video-title{
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    padding: 40px 0 60px;
+  }
+  footer.site p{
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin: 0 0 8px;
+  }
+  footer.site a{
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .footer-note{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Steve Morrow</a>
+    <nav class="site-nav">
+      <a href="#articles">Articles</a>
+      <a href="#videos">Videos</a>
+      <a href="#stories">Success Stories</a>
+      <a href="#podcast">Podcast</a>
+      <a href="#press">Press</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" id="top">
+    <h1>Storyteller</h1>
+    <p class="hero-sub">writer, editor, photographer</p>
+  </section>
+
+  <div class="hero-banner">
+    <img src="images/hero.jpg" alt="A chihuahua rides in a bicycle basket, photographed by Steve Morrow.">
+  </div>
+
+  <section class="block wrap" id="articles">
+    <div class="section-head">
+      <h2>Articles</h2>
+      <span class="count">10 pieces</span>
+    </div>
+    <div class="entry-list">
+
+      <a class="entry" href="https://prima-coffee.com/blog/coffee-101-how-do-i-get-started-with-coffee/" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://cdn11.bigcommerce.com/s-6h7ychjk4/images/stencil/1193x795/uploaded_images/how-to-get-started-with-coffee-blog.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Coffee 101: How Do I Get Started With Coffee?</span>
+          <span class="entry-tag">Learn</span>
+        </div>
+        <p class="entry-desc">A beginner's roadmap to brewing well at home: gear, budget, and the basics of ratio and grind.</p>
+        <span class="entry-meta">Prima Coffee Equipment — Nov 2017</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://prima-coffee.com/blog/what-we-are-brewing-devocion/" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://cdn11.bigcommerce.com/s-6h7ychjk4/product_images/uploaded_images/wwab-devocion-blog.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">What We Are Brewing: Devoción</span>
+          <span class="entry-tag">Recipe</span>
+        </div>
+        <p class="entry-desc">A pour-over recipe and a look at Devoción's unusually fast farm-to-cup timeline.</p>
+        <span class="entry-meta">Prima Coffee Equipment — Nov 2021</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://prima-coffee.com/learn/article/espresso/choosing-espresso-equipment" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://cdn11.bigcommerce.com/s-6h7ychjk4/product_images/uploaded_images/choosing-espresso-equipment-header.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Choosing Espresso Equipment</span>
+          <span class="entry-tag">Buying Guide</span>
+        </div>
+        <p class="entry-desc">A skill-level buying guide for a first — or next — espresso machine and grinder.</p>
+        <span class="entry-meta">Prima Coffee Equipment — Nov 2020</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://prima-coffee.com/blog/the-art-and-science-of-tamping/" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://cdn11.bigcommerce.com/s-6h7ychjk4/product_images/uploaded_images/tamping.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">The Art and Science of Tamping</span>
+          <span class="entry-tag">Technique</span>
+        </div>
+        <p class="entry-desc">A photo-illustrated breakdown of tamping mechanics, and how to keep it easy on your wrist.</p>
+        <span class="entry-meta">Prima Coffee Equipment — Nov 2021</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://prima-coffee.com/blog/how-to-build-a-good-company-culture-or-a-pep-talk-about-making-clear-what-matters/" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://cdn11.bigcommerce.com/s-6h7ychjk4/product_images/uploaded_images/how-to-build-a-good-company-culture.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">How to Build a Good Company Culture</span>
+          <span class="entry-tag">Business</span>
+        </div>
+        <p class="entry-desc">A pep talk on why culture has to be lived by a team, not just written down.</p>
+        <span class="entry-meta">Prima Coffee Equipment — Oct 2021</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/net-zero-houses-letcher-county" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/Regina%20at%20house.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Net-Zero Houses in Letcher County</span>
+          <span class="entry-tag">Blog</span>
+        </div>
+        <p class="entry-desc">How a nonprofit builder is putting solar-powered net-zero homes on flood-hit land in Eastern Kentucky.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Apr 2024</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/housing-choice-vouchers-inspections" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/hcv%20map.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Housing Choice Vouchers Inspections</span>
+          <span class="entry-tag">Blog</span>
+        </div>
+        <p class="entry-desc">A day in the field with a KHC inspector who verifies rental units meet federal safety standards.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Aug 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/housing-development-alliance-and-homes-inc-helping-rebuild-after-flooding" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/IMG_4361.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Housing Development Alliance and HOMES, Inc. Helping to Rebuild After Flooding</span>
+          <span class="entry-tag">Blog</span>
+        </div>
+        <p class="entry-desc">How two Eastern Kentucky nonprofits are rebuilding homes lost in the 2022 floods.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Feb 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-01-19-habitat-humanity-helping-bowling-green-rebuild-after-tornado" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/bg%20habitat%20side%202.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Habitat for Humanity Helping Bowling Green Rebuild After Tornado</span>
+          <span class="entry-tag">Blog</span>
+        </div>
+        <p class="entry-desc">Ten new townhouses rise in Bowling Green for families who survived the 2021 tornado.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Jan 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-01-16-khcs-disaster-response-housing-dashboard" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/unit%20type%20example.png" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">KHC's Disaster Response Housing Dashboard</span>
+          <span class="entry-tag">Blog</span>
+        </div>
+        <p class="entry-desc">Behind the interactive tool KHC built to connect tornado and flood survivors with open housing.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Jan 2023</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="block wrap" id="videos">
+    <div class="section-head">
+      <h2>Videos</h2>
+      <span class="count">10 pieces</span>
+    </div>
+    <div class="video-grid">
+
+      <a class="video-card" href="https://youtu.be/1LJOXaOAJgw" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/1LJOXaOAJgw/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Orphan Espresso Manual Grinders Comparison</span></div>
+      </a>
+
+      <a class="video-card" href="https://youtu.be/CT2Sj4FlNcA" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/CT2Sj4FlNcA/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Video Overview | Cafelat Robot Espresso Maker</span></div>
+      </a>
+
+      <a class="video-card" href="https://youtu.be/Kq2K5yR6F9o" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/Kq2K5yR6F9o/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Video Overview | Lelit Anna Home Espresso Machine</span></div>
+      </a>
+
+      <a class="video-card" href="https://youtu.be/hbxk9vgbc9w" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/hbxk9vgbc9w/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Video Overview | La Pavoni Europiccola</span></div>
+      </a>
+
+      <a class="video-card" href="https://youtu.be/NBTLmgRbPrM" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/NBTLmgRbPrM/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Timemore Chestnut Hand Grinder Comparison</span></div>
+      </a>
+
+      <a class="video-card" href="https://youtu.be/8BbLIitP6Gg" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/8BbLIitP6Gg/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Video Overview | Lelit Bianca V2</span></div>
+      </a>
+
+      <a class="video-card" href="https://youtu.be/GTGf6gsokl4" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/GTGf6gsokl4/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Success Story | Shalese | Family Self-Sufficiency Program</span></div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=J-irBboCJik" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/J-irBboCJik/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Success Story | Reagan | Brighton Recovery Center</span></div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=RD_h12XO7Vk" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/RD_h12XO7Vk/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Success Story | Alex | Down Payment Assistance and Closing Cost Grant</span></div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=jk4ETh0mE1I" target="_blank" rel="noopener">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/jk4ETh0mE1I/hqdefault.jpg" alt="" loading="lazy"></div>
+        <div class="video-info"><span class="video-title">Success Story | Kiara Thomas | Family Scholar House</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="block wrap" id="stories">
+    <div class="section-head">
+      <h2>Success Stories</h2>
+      <span class="count">6 pieces</span>
+    </div>
+    <div class="entry-list">
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-09-18-ashlee-dpa-and-mrb" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/DSCF7159-1.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Ashlee — DPA and MRB</span>
+          <span class="entry-tag">Success Story</span>
+        </div>
+        <p class="entry-desc">A first-time homebuyer's path to owning a house with KHC's down-payment and mortgage bond programs.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Sep 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-06-01-william-and-cheyenne-white-team-eastern-kentucky-flood-relief-fund" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/IMG_1732-bgb.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">William and Cheyenne White — Team Eastern Kentucky Flood Relief Fund</span>
+          <span class="entry-tag">Success Story</span>
+        </div>
+        <p class="entry-desc">A family rebuilds after losing their home to the 2022 Eastern Kentucky flood.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Jun 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-04-19-terri-randol-mt-lebanon-apartments" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/Terry%20Randol.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Terri Randol — Mt. Lebanon Apartments</span>
+          <span class="entry-tag">Success Story</span>
+        </div>
+        <p class="entry-desc">From homelessness to a renovated senior apartment community in Louisville.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Apr 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-04-01-william-and-jason-gross-affordable-housing-trust-fund" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/IMG_0621_0.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">William and Jason Gross — Affordable Housing Trust Fund</span>
+          <span class="entry-tag">Success Story</span>
+        </div>
+        <p class="entry-desc">A groundbreaking ceremony for a father and son rebuilding after the 2022 flood.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Apr 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-03-06-ashley-davis-habitat-humanity" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/ashley%20habitat.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Ashley Davis — Habitat for Humanity</span>
+          <span class="entry-tag">Success Story</span>
+        </div>
+        <p class="entry-desc">A Bowling Green family of seven moves from substandard rental housing into their first owned home.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Mar 2023</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://www.kyhousing.org/news/2023-03-07-brittany-berry-family-self-sufficiency-program" target="_blank" rel="noopener">
+        <div class="entry-thumb"><img src="https://www.kyhousing.org/sites/default/files/2026-04/brittany%20and%20alicia.jpg" alt="" loading="lazy"></div>
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Brittany Berry — Family Self-Sufficiency Program</span>
+          <span class="entry-tag">Success Story</span>
+        </div>
+        <p class="entry-desc">How an escrow-savings program helped a mother of five save her way to homeownership.</p>
+        <span class="entry-meta">Kentucky Housing Corporation — Mar 2023</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="block wrap" id="podcast">
+    <div class="section-head">
+      <h2>Podcast — Bringing It Home with KHC</h2>
+      <span class="count">8 episodes</span>
+    </div>
+    <div class="entry-list">
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/2188354/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Collaborative Efforts to Accelerate the Affordable Housing Supply in Kentucky</span>
+          <span class="entry-tag">S2025 E7</span>
+        </div>
+        <p class="entry-desc">Recorded live at the 2025 Kentucky Affordable Housing Conference, on regional strategies to speed up housing supply.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Aug 2025</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/2166432/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">READI 2.0: Economic Development and Housing in Indiana's Communities</span>
+          <span class="entry-tag">S2025 E6</span>
+        </div>
+        <p class="entry-desc">What Kentucky can learn from Indiana's multibillion-dollar regional development initiative.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Aug 2025</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/2042408/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Permanent Supportive Housing: Part 2 — St. John Center &amp; Sheehan Landing</span>
+          <span class="entry-tag">S2025 E4</span>
+        </div>
+        <p class="entry-desc">A look at Louisville's first single-site permanent supportive housing project.</p>
+        <span class="entry-meta">Bringing It Home with KHC — May 2025</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/1882579/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Meeting Kentucky's Workforce Housing Needs</span>
+          <span class="entry-tag">S2025 E2</span>
+        </div>
+        <p class="entry-desc">On the Kentucky Chamber's report tying housing shortages to business growth.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Feb 2025</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/1867748/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">2024 State of Metropolitan Housing Report</span>
+          <span class="entry-tag">S2025 E1</span>
+        </div>
+        <p class="entry-desc">Louisville researchers on land use, zoning, and the region's housing gap.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Jan 2025</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/1806666/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Community Land Trusts in Louisville</span>
+          <span class="entry-tag">S2024 E10</span>
+        </div>
+        <p class="entry-desc">How three new land trusts are building a path to generational wealth.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Dec 2024</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/1726392/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Manufactured Housing in Kentucky and Beyond</span>
+          <span class="entry-tag">S2024 E9</span>
+        </div>
+        <p class="entry-desc">Demystifying modern manufactured homes and their role in closing the housing gap.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Oct 2024</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://rss.com/podcasts/bringing-it-home/1628210/" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Habitat for Humanity of Henderson on Being a CHDO</span>
+          <span class="entry-tag">S2024 E8</span>
+        </div>
+        <p class="entry-desc">Inside the only Habitat affiliate in Kentucky with CHDO status.</p>
+        <span class="entry-meta">Bringing It Home with KHC — Aug 2024</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="block wrap" id="press">
+    <div class="section-head">
+      <h2>Press Releases</h2>
+      <span class="count">2 pieces</span>
+    </div>
+    <div class="entry-list">
+
+      <a class="entry" href="https://us2.campaign-archive.com/?u=3829d29f9e95f6aa657f1c290&id=ab6c3cb889" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">KHC Honors the Life and Legacy of Board Member P.G. Peeples</span>
+          <span class="entry-tag">Press Release</span>
+        </div>
+        <p class="entry-desc">A tribute marking the life and service of a longtime KHC board member.</p>
+        <span class="entry-meta">Kentucky Housing Corporation</span>
+        </div>
+      </a>
+
+      <a class="entry" href="https://us2.campaign-archive.com/?u=3829d29f9e95f6aa657f1c290&id=e77eb6a4e1" target="_blank" rel="noopener">
+        <div class="entry-body">
+        <div class="entry-top">
+          <span class="entry-title">Gateway on Broadway Affordable Housing and Community Resource Center Now Open</span>
+          <span class="entry-tag">Press Release</span>
+        </div>
+        <p class="entry-desc">Announcing the opening of a new affordable housing development and community resource center.</p>
+        <span class="entry-meta">Kentucky Housing Corporation</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site wrap" id="contact">
+  <p>Interested in the full archive, or want to get in touch?</p>
+  <p>Email me at <a href="mailto:you@example.com">you@example.com</a> — or find me on <a href="#">your platform of choice</a>.</p>
+  <p class="footer-note">Produced for Prima Coffee Equipment and Kentucky Housing Corporation.</p>
+</footer>
+
+</body>
+</html>
