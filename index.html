@@ -88,31 +88,12 @@
   }
   nav.site-nav a:hover{ color: var(--ink); }
 
-  /* ---------- Hero ---------- */
-  .hero{
-    padding: 64px 0 48px;
-  }
-  .hero h1{
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.15;
-    margin: 0 0 10px;
-    letter-spacing: -0.01em;
-  }
-  .hero-sub{
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-
+  /* ---------- Hero banner ---------- */
   .hero-banner{
     width: 100%;
     max-height: 420px;
     overflow: hidden;
-    margin: 40px 0 8px;
+    margin: 0 0 8px;
   }
   .hero-banner img{
     width: 100%;
@@ -157,13 +138,14 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
-    align-items: start;
   }
   @media (max-width: 620px){
     .entry-list{ grid-template-columns: 1fr; }
   }
   .entry{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
     text-decoration: none;
     color: var(--ink);
     background: var(--panel);
@@ -178,7 +160,8 @@
   }
   .entry-thumb{
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 160px;
+    flex-shrink: 0;
     overflow: hidden;
     background: var(--line);
   }
@@ -189,6 +172,10 @@
     display: block;
   }
   .entry-body{
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     padding: 18px 20px;
   }
   .entry-top{
@@ -204,6 +191,10 @@
     font-weight: 600;
     font-size: 1.12rem;
     line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .entry-tag{
     font-family: 'Inter', sans-serif;
@@ -218,13 +209,17 @@
     color: var(--ink-soft);
     font-size: 0.94rem;
     margin: 0 0 8px;
-    max-width: 62ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .entry-meta{
     font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
     color: var(--ink-soft);
     opacity: 0.85;
+    margin-top: auto;
   }
 
   /* ---------- Video grid ---------- */
@@ -237,7 +232,9 @@
     .video-grid{ grid-template-columns: 1fr; }
   }
   .video-card{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 260px;
     text-decoration: none;
     color: var(--ink);
     background: var(--panel);
@@ -248,7 +245,9 @@
   .video-card:hover{ transform: translateY(-2px); }
   .video-thumb{
     position: relative;
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: 170px;
+    flex-shrink: 0;
     background: var(--ink);
     overflow: hidden;
   }
@@ -272,12 +271,20 @@
     text-shadow: 0 1px 4px rgba(0,0,0,0.5);
   }
   .video-info{
+    flex: 1;
+    min-height: 0;
     padding: 12px 14px;
+    display: flex;
+    align-items: center;
   }
   .video-title{
     font-size: 0.92rem;
     font-weight: 500;
     line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* ---------- Footer ---------- */
@@ -320,19 +327,13 @@
 </header>
 
 <main>
-  <section class="hero wrap" id="top">
-    <h1>Storyteller</h1>
-    <p class="hero-sub">writer, editor, photographer</p>
-  </section>
-
-  <div class="hero-banner">
+  <div class="hero-banner" id="top">
     <img src="hero.jpg" alt="A chihuahua rides in a bicycle basket, photographed by Steve Morrow.">
   </div>
 
   <section class="block wrap" id="articles">
     <div class="section-head">
       <h2>Articles</h2>
-      <span class="count">10 pieces</span>
     </div>
     <div class="entry-list">
 
@@ -462,7 +463,6 @@
   <section class="block wrap" id="videos">
     <div class="section-head">
       <h2>Videos</h2>
-      <span class="count">10 pieces</span>
     </div>
     <div class="video-grid">
 
@@ -522,7 +522,6 @@
   <section class="block wrap" id="stories">
     <div class="section-head">
       <h2>Success Stories</h2>
-      <span class="count">6 pieces</span>
     </div>
     <div class="entry-list">
 
@@ -604,7 +603,6 @@
   <section class="block wrap" id="podcast">
     <div class="section-head">
       <h2>Podcast — Bringing It Home with KHC</h2>
-      <span class="count">8 episodes</span>
     </div>
     <div class="entry-list">
 
@@ -702,7 +700,6 @@
   <section class="block wrap" id="press">
     <div class="section-head">
       <h2>Press Releases</h2>
-      <span class="count">2 pieces</span>
     </div>
     <div class="entry-list">
 
