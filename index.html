@@ -73,10 +73,21 @@
     font-size: 1.05rem;
     letter-spacing: -0.01em;
     text-decoration: none;
+    white-space: nowrap;
   }
   nav.site-nav{
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 16px;
+  }
+  @media (max-width: 900px){
+    header.site .wrap{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    nav.site-nav{ gap: 4px 16px; }
   }
   nav.site-nav a{
     font-size: 0.85rem;
@@ -313,6 +324,77 @@
     opacity: 0.7;
     margin-top: 20px;
   }
+
+  /* ---------- Photography gallery ---------- */
+  .gallery{
+    column-count: 3;
+    column-gap: 14px;
+  }
+  @media (max-width: 900px){
+    .gallery{ column-count: 2; }
+  }
+  .gallery-item{
+    display: block;
+    width: 100%;
+    margin: 0 0 14px;
+    padding: 0;
+    border: 0;
+    background: var(--line);
+    cursor: zoom-in;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+  .gallery-item img{
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.15s ease;
+  }
+  .gallery-item:hover img{ opacity: 0.88; }
+
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 17, 17, 0.94);
+  }
+  .lightbox[hidden]{ display: none; }
+  .lb-img{
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    object-fit: contain;
+    user-select: none;
+  }
+  .lb-btn{
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lb-btn:hover{ background: rgba(255, 255, 255, 0.28); }
+  .lb-close{ top: 16px; right: 16px; }
+  .lb-prev{ left: 16px; top: 50%; transform: translateY(-50%); }
+  .lb-next{ right: 16px; top: 50%; transform: translateY(-50%); }
+  .lb-count{
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  body.lb-open{ overflow: hidden; }
 </style>
 </head>
 <body>
@@ -327,6 +409,7 @@
       <a href="#podcast">Podcast</a>
       <a href="#press">Press</a>
       <a href="#academic">Academic</a>
+      <a href="#photography">Photography</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -800,12 +883,111 @@
     </div>
   </section>
 
+  <section class="block wrap" id="photography">
+    <div class="section-head">
+      <h2>Photography</h2>
+    </div>
+    <div class="gallery" id="gallery">
+<!-- PHOTOS:START -->
+      <button class="gallery-item" type="button" data-full="photos/photo-01.jpg" aria-label="View photo 1 of 25"><img src="photos/photo-01.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-02.jpg" aria-label="View photo 2 of 25"><img src="photos/photo-02.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-03.jpg" aria-label="View photo 3 of 25"><img src="photos/photo-03.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-04.jpg" aria-label="View photo 4 of 25"><img src="photos/photo-04.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-05.jpg" aria-label="View photo 5 of 25"><img src="photos/photo-05.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-06.jpg" aria-label="View photo 6 of 25"><img src="photos/photo-06.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-07.jpg" aria-label="View photo 7 of 25"><img src="photos/photo-07.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-08.jpg" aria-label="View photo 8 of 25"><img src="photos/photo-08.jpg" width="1600" height="1067" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-09.jpg" aria-label="View photo 9 of 25"><img src="photos/photo-09.jpg" width="1066" height="1600" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-10.jpg" aria-label="View photo 10 of 25"><img src="photos/photo-10.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-11.jpg" aria-label="View photo 11 of 25"><img src="photos/photo-11.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-12.jpg" aria-label="View photo 12 of 25"><img src="photos/photo-12.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-13.jpg" aria-label="View photo 13 of 25"><img src="photos/photo-13.jpg" width="1600" height="1576" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-14.jpg" aria-label="View photo 14 of 25"><img src="photos/photo-14.jpg" width="1600" height="1576" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-15.jpg" aria-label="View photo 15 of 25"><img src="photos/photo-15.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-16.jpg" aria-label="View photo 16 of 25"><img src="photos/photo-16.jpg" width="1600" height="1576" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-17.jpg" aria-label="View photo 17 of 25"><img src="photos/photo-17.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-18.jpg" aria-label="View photo 18 of 25"><img src="photos/photo-18.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-19.jpg" aria-label="View photo 19 of 25"><img src="photos/photo-19.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-20.jpg" aria-label="View photo 20 of 25"><img src="photos/photo-20.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-21.jpg" aria-label="View photo 21 of 25"><img src="photos/photo-21.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-22.jpg" aria-label="View photo 22 of 25"><img src="photos/photo-22.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-23.jpg" aria-label="View photo 23 of 25"><img src="photos/photo-23.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-24.jpg" aria-label="View photo 24 of 25"><img src="photos/photo-24.jpg" width="1600" height="1066" alt="" loading="lazy" decoding="async"></button>
+      <button class="gallery-item" type="button" data-full="photos/photo-25.jpg" aria-label="View photo 25 of 25"><img src="photos/photo-25.jpg" width="1066" height="1600" alt="" loading="lazy" decoding="async"></button>
+<!-- PHOTOS:END -->
+    </div>
+  </section>
+
 </main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-btn lb-next" type="button" aria-label="Next photo">&#8250;</button>
+  <div class="lb-count" id="lb-count" aria-live="polite"></div>
+</div>
 
 <footer class="site wrap" id="contact">
   <p>I'm looking for work that aligns with my experience and expertise.</p>
   <p>Email me at <a href="mailto:smmorrow@gmail.com">smmorrow@gmail.com</a>.</p>
 </footer>
+
+<script>
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+  var box = document.getElementById('lightbox');
+  if (!items.length || !box) return;
+  var img = document.getElementById('lb-img');
+  var count = document.getElementById('lb-count');
+  var current = 0, lastFocus = null, startX = null;
+
+  function show(i){
+    current = (i + items.length) % items.length;
+    img.src = items[current].getAttribute('data-full');
+    count.textContent = (current + 1) + ' / ' + items.length;
+    // warm the cache for the neighbours
+    [1, -1].forEach(function(d){
+      var n = items[(current + d + items.length) % items.length];
+      new Image().src = n.getAttribute('data-full');
+    });
+  }
+  function open(i){
+    lastFocus = document.activeElement;
+    box.hidden = false;
+    document.body.classList.add('lb-open');
+    show(i);
+    box.querySelector('.lb-close').focus();
+  }
+  function close(){
+    box.hidden = true;
+    document.body.classList.remove('lb-open');
+    img.src = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  items.forEach(function(el, i){ el.addEventListener('click', function(){ open(i); }); });
+  box.querySelector('.lb-close').addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', function(){ show(current - 1); });
+  box.querySelector('.lb-next').addEventListener('click', function(){ show(current + 1); });
+  box.addEventListener('click', function(e){ if (e.target === box) close(); });
+
+  document.addEventListener('keydown', function(e){
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(current - 1);
+    else if (e.key === 'ArrowRight') show(current + 1);
+  });
+
+  box.addEventListener('touchstart', function(e){ startX = e.changedTouches[0].clientX; }, {passive: true});
+  box.addEventListener('touchend', function(e){
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+  }, {passive: true});
+})();
+</script>
 
 </body>
 </html>
